@@ -25,8 +25,8 @@ Route.show_route = function(){
   map.addOverlay(encodedPolyline);
 }
 
-random_hex_colour = function() {
+function random_hex_colour() {
   num = Math.floor(Math.random()*16777216).toString(16);
-  padding = new Array(6 - num.length).join("0");
+  padding = new Array(7 - num.length).join("0");
   return '#' + padding + num;
 }
