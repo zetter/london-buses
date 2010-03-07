@@ -6,8 +6,9 @@
 <script type="text/javascript" src="route.js"></script>
 <script type="text/javascript">
 
+  var route_names;
   var routes = new Array();
-  var map
+  var map;
   
   function route(route_name, func_name) {
     if (!routes[route_name]) {
@@ -24,15 +25,22 @@
       map.setUIToDefault();
     }
 
-    $.getJSON('route_list.json', function(data) {
-      var route_names = data['AllRoutes']
+    var to_display = ['1', '22', '344', '313', '100']
+
+    $.each(to_display, function(i, route_name){
+      route(route_name, 'build_route');
     });
 
-    route('1', 'build_route');
-    route('313', 'build_route');
-    route('313', 'hide_route')
-    route('313', 'show_route')
+    $.each(to_display, function(i, route_name){
+      route(route_name, 'show_route');
+    });
 
+  }
+
+  function load_all_routes() {
+    $.getJSON('route_list.json', function(data) {
+      route_names = data['AllRoutes']
+    });
   }
 
 </script>

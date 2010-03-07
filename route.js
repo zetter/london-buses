@@ -56,11 +56,12 @@ Route.prototype.build_route = function(){
     numLevels: 18,
     zoomFactor: 2
   })
+  this.encoded_polyline.hide();
   map.addOverlay(this.encoded_polyline);
 }
 
-Route.prototype.hide_route = function(){
-  this.encoded_polyline.hide();
+Route.prototype.show_route = function(){
+  this.encoded_polyline.show();
 }
 
 
