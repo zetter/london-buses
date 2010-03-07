@@ -9,9 +9,10 @@ def route_url(route)
   "http://www.tfl.gov.uk/tfl/gettingaround/maps/buses/tfl-bus-map/dotnet/FullRoute.aspx?route=#{route}&run=1"
 end
 
+FileUtils.mkdir('routes') unless File.exist?('routes')
 route_list_file = File.new("route_list.json", 'w')
 route_list = `curl '#{route_list_url}'`
-route_file_file.write(route_list)
+route_list_file.write(route_list)
 route_list_file.close
 routes = JSON.parse(route_list)['AllRoutes']  
 
