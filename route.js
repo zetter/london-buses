@@ -1,28 +1,71 @@
 var Route = {}
 
-Route.init = function(route_data){
-  this.stops = route_data['Stops'];
-  this.route = route_data['Routes'][0];
-  return this;
+
+Route = function(route_name){
+  this.data_loaded = false;
+  this.func_queue = new Array();
+  this.route_name = route_name
+
+  var me = this;
+  var url = build_url(this.route_name)
+
+  $.getJSON(url, function(route_data) {
+    me.receive_data(route_data);
+  });
 }
 
-Route.show_stations = function(){
+Route.prototype.run = function (func_name) {
+  if (this.data_loaded) {
+    this[func_name]();
+  }
+  else {
+    this.func_queue.push(func_name);
+  }
+}
+
+Route.prototype.receive_data = function(route_data) {
+  this.stops = route_data['Stops'];
+  var route = route_data['Routes'][0];
+  this.points = route['encodedPoints'];
+  this.levels = route['encodedLevels'];
+  this.data_loaded = true;
+
+  if (this.func_queue.length) {
+    var me = this;
+    $.each(this.func_queue, function(i, func_name){
+      me[func_name]();
+    });
+    this.func_queue = null;
+  }
+}
+
+Route.prototype.show_stations = function(){
   $.each(this.stops, function(i, stop) {
     var latlng = new GLatLng(stop['Latitude'], stop['Longitude']);
     map.addOverlay(new GMarker(latlng));
   })
 }
 
-Route.show_route = function(){
-  var encodedPolyline = new GPolyline.fromEncoded({
+Route.prototype.build_route = function(){
+  this.encoded_polyline = new GPolyline.fromEncoded({
     color: random_hex_colour(),
-    weight: 4,
-    points: this.route['encodedPoints'],
-    levels: this.route['encodedLevels'],
+    opacity: 1,
+    weight: 6,
+    points: this.points,
+    levels: this.levels,
     numLevels: 18,
     zoomFactor: 2
-  });
-  map.addOverlay(encodedPolyline);
+  })
+  map.addOverlay(this.encoded_polyline);
+}
+
+Route.prototype.hide_route = function(){
+  this.encoded_polyline.hide();
+}
+
+
+function build_url(route) {
+  return "routes/" + route + ".json"
 }
 
 function random_hex_colour() {

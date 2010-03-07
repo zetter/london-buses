@@ -1,29 +1,20 @@
 <html>
 <head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
 <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAATsqJRPc-fdMO9ZXeCM4bpRRH5Ag-HcVl75qhJqki4fmF0NXdrRQf4d2O1wADpKOnVxXJ6LEyeLnPLw&sensor=false"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="route.js"></script>
 <script type="text/javascript">
-  
-  var routes = new Array
+
+  var routes = new Array();
   var map
   
-  function route(route, func_name) {
-    if (routes[route]) {
-      routes[route][func_name]();
+  function route(route_name, func_name) {
+    if (!routes[route_name]) {
+      routes[route_name] = new Route(route_name);
     }
-    else {
-      url = build_url(route)
-      $.getJSON(url, function(data) {
-        routes[route] = Route.init(data);
-        routes[route][func_name]();
-      });
-    }
-  } 
 
-  function build_url(route) {
-    return "routes/" + route + ".json"
+    routes[route_name].run(func_name);
   }
 
   function initialize() {
@@ -34,10 +25,14 @@
     }
 
     $.getJSON('route_list.json', function(data) {
-      $.each(data['AllRoutes'], function(i, route_name) {
-        route(route_name, 'show_route');
-      });
+      var route_names = data['AllRoutes']
     });
+
+    route('1', 'build_route');
+    route('313', 'build_route');
+    route('313', 'hide_route')
+    route('313', 'show_route')
+
   }
 
 </script>
