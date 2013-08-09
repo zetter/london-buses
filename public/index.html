@@ -1,7 +1,7 @@
 <html>
 <head>
 
-<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAATsqJRPc-fdMO9ZXeCM4bpRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxTgAcfA8DlQyaZwbRC5pzVkatdixw&sensor=false"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry&sensor=false"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="route.js"></script>
 <script type="text/javascript">
@@ -19,13 +19,18 @@
   }
 
   function initialize() {
-    if (GBrowserIsCompatible()) {
-      map = new GMap2(document.getElementById("map_canvas"));
-      map.setCenter(new GLatLng(51.508721, -0.131921), 12);
-      map.setUIToDefault();
-    }
+    load_all_routes()
+  }
+  
+  function draw(to_display) {
+    var mapOptions = {
+      zoom: 12,
+      center: new google.maps.LatLng(51.508721, -0.131921), 
+      styles: ["terrain"]
+    };
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-    var to_display = ['1', '22', '344', '313', '100']
+    // var to_display = ['1', '22', '344', '313', '100']
 
     $.each(to_display, function(i, route_name){
       route(route_name, 'build_route');
@@ -39,7 +44,7 @@
 
   function load_all_routes() {
     $.getJSON('route_list.json', function(data) {
-      route_names = data['AllRoutes']
+      draw(data['AllRoutes'])
     });
   }
 

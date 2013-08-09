@@ -47,21 +47,20 @@ Route.prototype.show_stations = function(){
 }
 
 Route.prototype.build_route = function(){
-  this.encoded_polyline = new GPolyline.fromEncoded({
-    color: random_hex_colour(),
-    opacity: 1,
-    weight: 6,
-    points: this.points,
-    levels: this.levels,
-    numLevels: 18,
-    zoomFactor: 2
-  })
-  this.encoded_polyline.hide();
-  map.addOverlay(this.encoded_polyline);
+  var decoded_path = google.maps.geometry.encoding.decodePath(this.points);
+  this.encoded_polyline = new google.maps.Polyline({
+    path: decoded_path,
+    // levels: this.levels,
+    strokeColor: random_hex_colour(),
+    strokeOpacity: 0.8,
+    strokeWeight: 4
+  });
+
+  this.encoded_polyline.setMap(map);
 }
 
 Route.prototype.show_route = function(){
-  this.encoded_polyline.show();
+  // this.encoded_polyline.show();
 }
 
 

@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'rubygems'
 require 'json'
 
@@ -17,7 +18,9 @@ route_list_file.close
 routes = JSON.parse(route_list)['AllRoutes']  
 
 routes.each do |route|
-  route_file = File.new("routes/#{route}.json", 'w')
+  file_name = "routes/#{route}.json"
+  next if File.exists?(file_name)
+  route_file = File.new(file_name, 'w')
   route_file.write(`curl '#{route_url(route)}'`)
   route_file.close
   sleep(2.5 - rand())
