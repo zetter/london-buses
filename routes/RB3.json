@@ -1,0 +1,3 @@
+{"Stops" : [{"StopId":21598,"StopCode":"LRS116","PointLetter":"","StopName":"London Bridge","Latitude":51.506950,"Longitude":-0.084832,"Action":0},{"StopId":21600,"StopCode":"LRS111","PointLetter":"","StopName":"Canary Wharf","Latitude":51.505002,"Longitude":-0.028643,"Action":0}], "Routes" : [{"Id":1987,"Route":"RB3","From":"London Bridge","Towards":"Canary Wharf","Run":"1","IsDay":1,"encodedLevels":"PACE@?A@CBAB@DCB@GACAEBCDBAG@CAEACA@BCP","encodedPoints":"s}jyHjqODgAe@gPf@oEd@sCdAuErAmGlAsGvBqMnAuFxB{F|@}CfBaIbAqFzByM|AcOTwCR}FO_He@aG{@_HkAqF{BsH_F_MaSab@eBkFs@cDYmDQaEEuGRaLZ_F~@gGvCkNdBsGzAeDb@}AzBcL|@k@","Color":"993333","hasRunTwo":1,"startPoint":{"Latitude":51.506985,"Longitude":-0.084855},"endPoint":{"Latitude":51.505040,"Longitude":-0.028753}}]}
+
+

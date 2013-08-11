@@ -1,0 +1,3 @@
+{"Stops" : [], "Routes" : [{"Id":2280,"Route":"NL-B","From":"Finchley Central","Towards":"King's Cross Station","Run":"1","IsDay":0,"encodedLevels":"PAAD@B@F?@C@@?BF@?@?@C@?AD@IA@C??DBD@BG@@@C@D@B?D@BAC???FAFAB@I???@F@B?EABF@D?@?CBA?G???P","encodedPoints":"atzyHla_@`@[nAQ~DkAfAgAfA}Az@}AdCeFlFeMpAqCdEiKdByFxOue@~CcJtDkLtCyGjCmCFCvP{OhGgGdAkAvGmGlAaA~@k@nDeCfEuDNYlA}DTBv@bAnBvBlLlFlGvCvGtClLbB~ExAt@^bPrKxDxApDXX@VEl@Bd@UbDw@tEd@pFx@rAVtH`Bt@D~@GlBc@PSb@@lGf@TDpDVLYnLiJbAdDhBhEHDNAhA_A`HwGr@k@tFgFvGmG?QyA{I_@uF]}GJ_ArEeNnAyB|A}B`DcEPAPIpGqC|B_A~E{@\\Q@IR[[kA{CwJi@yAeAoD","Color":"993333","hasRunTwo":1,"startPoint":{"Latitude":51.587379,"Longitude":-0.164221},"endPoint":{"Latitude":51.530680,"Longitude":-0.122601}}]}
+
+

@@ -1,0 +1,3 @@
+{"Stops" : [{"StopId":21788,"StopCode":"LRS131","PointLetter":"","StopName":"Hilton Docklands / Nelson Dock","Latitude":51.504524,"Longitude":-0.031748,"Action":0},{"StopId":21789,"StopCode":"LRS130","PointLetter":"","StopName":"Canary Wharf","Latitude":51.505304,"Longitude":-0.028904,"Action":0}], "Routes" : [{"Id":1927,"Route":"RB4","From":"Hilton Docklands / Nelson Dock","Towards":"Canary Wharf","Run":"1","IsDay":1,"encodedLevels":"PCDP","encodedPoints":"ynjyHteE^AsB{Q}@j@","Color":"993333","hasRunTwo":1,"startPoint":{"Latitude":51.504614,"Longitude":-0.031783},"endPoint":{"Latitude":51.505349,"Longitude":-0.028971}}]}
+
+
