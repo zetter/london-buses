@@ -1,6 +1,5 @@
 var Route = {}
 
-
 Route = function(route_name){
   this.data_loaded = false;
   this.func_queue = new Array();
@@ -24,7 +23,6 @@ Route.prototype.run = function (func_name) {
 }
 
 Route.prototype.receive_data = function(route_data) {
-  this.stops = route_data['Stops'];
   var route = route_data['Routes'][0];
   this.points = route['encodedPoints'];
   this.levels = route['encodedLevels'];
@@ -39,28 +37,25 @@ Route.prototype.receive_data = function(route_data) {
   }
 }
 
-Route.prototype.show_stations = function(){
-  $.each(this.stops, function(i, stop) {
-    var latlng = new GLatLng(stop['Latitude'], stop['Longitude']);
-    map.addOverlay(new GMarker(latlng));
-  })
-}
-
 Route.prototype.build_route = function(){
   var decoded_path = google.maps.geometry.encoding.decodePath(this.points);
-  this.encoded_polyline = new google.maps.Polyline({
+  var polyline = new google.maps.Polyline({
     path: decoded_path,
-    // levels: this.levels,
     strokeColor: random_hex_colour(),
     strokeOpacity: 0.8,
     strokeWeight: 4
   });
 
-  this.encoded_polyline.setMap(map);
-}
+  google.maps.event.addListener(polyline, 'click', function() {
+    if (highlighted_route) {
+      highlighted_route.setOptions({strokeOpacity: 0.8, strokeWeight: 4, zIndex: 100})
+    }
 
-Route.prototype.show_route = function(){
-  // this.encoded_polyline.show();
+    polyline.setOptions({strokeOpacity: 1, strokeWeight: 10, zIndex: 1000});
+    highlighted_route = polyline;
+  });
+
+  polyline.setMap(map);
 }
 
 

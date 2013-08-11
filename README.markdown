@@ -9,5 +9,4 @@ Interface to the api, you can plot stops and routes on the map.
 Download the json since tfl doesn't allow cross-site requests:
     $ ruby download_routes.rb
  
-If you are not accessing the page from http://localhost/ change the google maps api key in index.html. 
-   
+Then host public folder and load index.html.

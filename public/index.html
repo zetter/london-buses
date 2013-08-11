@@ -9,6 +9,7 @@
   var route_names;
   var routes = new Array();
   var map;
+  var highlighted_route;
   
   function route(route_name, func_name) {
     if (!routes[route_name]) {
@@ -28,18 +29,12 @@
       center: new google.maps.LatLng(51.508721, -0.131921), 
       styles: ["terrain"]
     };
-    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-    // var to_display = ['1', '22', '344', '313', '100']
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
     $.each(to_display, function(i, route_name){
       route(route_name, 'build_route');
     });
-
-    $.each(to_display, function(i, route_name){
-      route(route_name, 'show_route');
-    });
-
   }
 
   function load_all_routes() {
