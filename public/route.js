@@ -24,6 +24,7 @@ Route.prototype.run = function (func_name) {
 
 Route.prototype.receive_data = function(route_data) {
   var route = route_data['Routes'][0];
+
   this.points = route['encodedPoints'];
   this.levels = route['encodedLevels'];
   this.data_loaded = true;

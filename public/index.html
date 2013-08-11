@@ -3,6 +3,7 @@
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry&sensor=false"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="map_style.js"></script>
 <script type="text/javascript" src="route.js"></script>
 <script type="text/javascript">
 
@@ -27,10 +28,17 @@
     var mapOptions = {
       zoom: 12,
       center: new google.maps.LatLng(51.508721, -0.131921), 
-      styles: ["terrain"]
+      mapTypeControlOptions: {
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'water_only']
+      }
     };
 
+    var styled_map = new google.maps.StyledMapType(map_style, {name: "Water Only"});
+
     map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+    map.mapTypes.set('water_only', styled_map);
+    map.setMapTypeId('water_only');
 
     $.each(to_display, function(i, route_name){
       route(route_name, 'build_route');
